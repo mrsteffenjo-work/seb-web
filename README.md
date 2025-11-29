@@ -1,7 +1,7 @@
 # seb-web
 
 This website should have a white background and support light/dark mode.
-Built with Next.js 16, React 19, TypeScript, Tailwind CSS 4+, Sanity, and shadcn/ui.
+Built with Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4+, Sanity, and shadcn/ui.
 
 ## Features
 
@@ -12,7 +12,7 @@ Built with Next.js 16, React 19, TypeScript, Tailwind CSS 4+, Sanity, and shadcn
 
 ## Tech Stack
 
-- Next.js 16
+- Next.js 16 (App Router)
 - React 19
 - TypeScript
 - Tailwind CSS 4+
@@ -40,10 +40,11 @@ Built with Next.js 16, React 19, TypeScript, Tailwind CSS 4+, Sanity, and shadcn
 
 ## Setup Steps
 
-1. Create Next.js app with TypeScript:
+1. Create Next.js app with TypeScript and App Router (App Router is stable in v16):
    ```sh
    pnpm create next-app . --ts
    ```
+   - The default structure uses the `/app` directory for routing and layouts.
 
 2. Install dependencies:
    ```sh
@@ -64,12 +65,18 @@ Built with Next.js 16, React 19, TypeScript, Tailwind CSS 4+, Sanity, and shadcn
    pnpm dlx sanity@latest init --project seb-web
    ```
 
-6. Add basic pages:
-   - `/pages/index.tsx` (Welcome)
-   - `/pages/about.tsx`
-   - `/pages/comics.tsx`
+6. Add basic pages in `/app`:
+   - `/app/page.tsx` (Welcome, Server Component)
+   - `/app/about/page.tsx` (About, Server Component)
+   - `/app/comics/page.tsx` (Comics, Server Component)
 
-7. Add navigation and theme toggle.
+7. Add navigation and theme toggle in `/app/layout.tsx`:
+   - Use shadcn/ui for UI components.
+   - Implement theme toggle as a Client Component (`'use client'`).
+
+8. Use Server Components by default. Mark interactive components with `'use client'` at the top.
+
+9. Use `next/image` for images and `next/link` for navigation.
 
 ## Example Data Structure
 

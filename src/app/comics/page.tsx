@@ -28,11 +28,10 @@ export default async function Comics() {
             {/* Cover image left */}
             {cover ? (
               <div className="w-[150px] h-[211px] sm:w-[180px] sm:h-[254px] flex-shrink-0 relative overflow-hidden rounded-md bg-zinc-200 dark:bg-zinc-800">
-                <Image
+                <Image className={"w-[150px] h-[211px] sm:w-[180px] sm:h-[254px] flex-shrink-0 relative overflow-hidden rounded-md bg-zinc-200 dark:bg-zinc-800"}
                   src={urlFor(cover).url()}
                   alt={name}
-                  width={100}
-                  height={300}
+                  fill
                 />
               </div>
             ) : (

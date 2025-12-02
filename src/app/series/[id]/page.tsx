@@ -4,18 +4,19 @@ import { urlFor } from '@/sanity/lib/image';
 import Image from 'next/image';
 
 interface SeriesPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const COMICS_IN_SERIES_QUERY = `*[_type == "comic" && partOf._ref == $seriesId]{_id, name,cover, description}`;
 
 export default async function Series({ params }: SeriesPageProps) {
-  const seriesId = params.id;
+    const resolvedParams = await params;
+    const seriesId = resolvedParams.id;
   if (!seriesId) {
     return (
       <main className="flex min-h-screen items-center justify-center">
         <div className="text-red-500 text-xl">Error: Series id is missing from params.</div>
-        <pre>{JSON.stringify(params, null, 2)}</pre>
+        <pre>{JSON.stringify(resolvedParams, null, 2)}</pre>
       </main>
     );
   }
